@@ -48,10 +48,6 @@ function App() {
         <div style={{ marginTop: '5%' }}>
         <List onClickComplete={onClickComplete} onClickDelete={onClickDelete} onClickBack={onClickBack} incompleteTodos = {incompleteTodos} completeTodos = {completeTodos}  />
         </div>
-
-        <div>
-
-        </div>
       </div>
     </>
   );
