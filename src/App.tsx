@@ -19,6 +19,7 @@ function App() {
     const newTodos = [...incompleteTodos, todoText];
     setIncompleteTodos(newTodos);
     setTodoText("");
+    console.log(todoText)
   }
 
   const onClickDelete = (index: number) => {
@@ -44,7 +45,7 @@ function App() {
   return (
     <>
       <div style={{ marginTop: '5%', marginLeft: '5%' }}>
-        <Form onChange = {onChangeTodoText} onClick = {onClickAdd} value ={todoText} />
+        <Form onChange = {onChangeTodoText} onClickAdd = {onClickAdd} todoText ={todoText} />
         <div style={{ marginTop: '5%' }}>
         <List onClickComplete={onClickComplete} onClickDelete={onClickDelete} onClickBack={onClickBack} incompleteTodos = {incompleteTodos} completeTodos = {completeTodos}  />
         </div>
