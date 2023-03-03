@@ -1,7 +1,14 @@
 import { Button } from '@mui/material'
-import React from 'react'
 
-export const List = (props: any) => {
+type Props = {
+  onClickComplete: any;
+  onClickDelete: any;
+  onClickBack: any;
+  incompleteTodos: any;
+  completeTodos: any;
+}
+
+export const List = (props: Props) => {
   const { onClickComplete, onClickDelete, onClickBack, incompleteTodos, completeTodos } = props
   return (
 
@@ -23,7 +30,7 @@ export const List = (props: any) => {
       </ul>
       <h3>・完了のtodo</h3>
       <ul>
-        {completeTodos.map((todo:any, index:any) => {
+        {completeTodos.map((todo: any, index: any) => {
           return (
             <div key={todo} className="list-row">
               <li>{todo}</li>

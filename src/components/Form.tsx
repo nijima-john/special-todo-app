@@ -1,7 +1,13 @@
 import { Button, TextField } from '@mui/material';
 
 
-export const Form = (props: any) => {
+type Props = {
+  onClickAdd: any,
+  onChange: any,
+  todoText: string,
+}
+
+export const Form = (props: Props) => {
   const { onClickAdd, onChange, todoText } = props;
 
   return (
