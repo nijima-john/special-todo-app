@@ -1,5 +1,7 @@
-import { Button, TextField } from '@mui/material';
+
 import { SetStateAction, useState } from 'react';
+import { Form } from "./components/Form"
+import { List } from './components/List';
 
 
 function App() {
@@ -28,7 +30,6 @@ function App() {
   const onClickComplete = (index: number) => {
     const newIncompleteTodos = [...incompleteTodos]
     newIncompleteTodos.splice(index, 1);
-
     const newCompleteTodos = [...completeTodos, incompleteTodos[index]];
     setIncompleteTodos(newIncompleteTodos);
     setCompleteTodos(newCompleteTodos);
@@ -36,44 +37,20 @@ function App() {
 
   const onClickBack = (index: number) => {
     const newTodos = [...completeTodos];
-    newTodos.splice(index,1);
+    newTodos.splice(index, 1);
     setCompleteTodos(newTodos)
   }
 
   return (
     <>
       <div style={{ marginTop: '5%', marginLeft: '5%' }}>
-        <TextField value={todoText} onChange={onChangeTodoText} id="outlined-basic" label="todoを入力してください" variant="outlined" />
-        <Button onClick={onClickAdd} variant="outlined" size="large" style={{ marginLeft: '25px', marginTop: '5px' }} >登録</Button>
+        <Form onChange = {onChangeTodoText} onClick = {onClickAdd} value ={todoText} />
         <div style={{ marginTop: '5%' }}>
-          <p>未完了のtodo</p>
-          <ul>
-            {
-              incompleteTodos.map((todo, index) => {
-                return (
-                  <div key={todo}>
-                    <li>{todo}</li>
-                    <Button onClick={() => onClickComplete(index)} variant="outlined" style={{ marginRight: '3%' }}>完了</Button>
-                    <Button onClick={() => onClickDelete(index)} variant="outlined" color="error" style={{ marginRight: '3%' }}>削除</Button>
-                  </div>
-                )
-              })
-            }
-          </ul>
+        <List onClickComplete={onClickComplete} onClickDelete={onClickDelete} onClickBack={onClickBack} incompleteTodos = {incompleteTodos} completeTodos = {completeTodos}  />
         </div>
 
         <div>
-          <p>完了のTODO</p>
-          <ul>
-            {completeTodos.map((todo, index) => {
-              return (
-                <div key={todo} className="list-row">
-                  <li>{todo}</li>
-                  <Button onClick={() => onClickBack(index)} variant="outlined" color="error" style={{ marginRight: '3%' }}>削除</Button>
-                </div>
-              );
-            })}
-          </ul>
+
         </div>
       </div>
     </>
