@@ -4,8 +4,8 @@ interface Props  {
   onClickComplete: (index: number) => void;
   onClickDelete: (index: number) => void;
   onClickBack: (index: number) => void;
-  incompleteTodos: any;
-  completeTodos: any;
+  incompleteTodos: string[];
+  completeTodos: string[];
 }
 
 export const List = (props: Props) => {
