@@ -1,10 +1,10 @@
 import { Button, TextField } from '@mui/material';
 
 
-type Props = {
-  onClickAdd: any,
-  onChange: any,
-  todoText: string,
+interface Props  {
+  onClickAdd: () => void;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  todoText: string;
 }
 
 export const Form = (props: Props) => {

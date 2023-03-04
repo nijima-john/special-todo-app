@@ -1,9 +1,9 @@
 import { Button } from '@mui/material'
 
-type Props = {
-  onClickComplete: any;
-  onClickDelete: any;
-  onClickBack: any;
+interface Props  {
+  onClickComplete: (index: number) => void;
+  onClickDelete: (index: number) => void;
+  onClickBack: (index: number) => void;
   incompleteTodos: any;
   completeTodos: any;
 }
@@ -16,7 +16,7 @@ export const List = (props: Props) => {
       <h3>・未完了のtodo</h3>
       <ul>
         {
-          incompleteTodos.map((todo: any, index: any) => {
+          incompleteTodos.map((todo: string, index: number) => {
             return (
               <div key={todo}>
                 <li>{todo}</li>
@@ -30,7 +30,7 @@ export const List = (props: Props) => {
       </ul>
       <h3>・完了のtodo</h3>
       <ul>
-        {completeTodos.map((todo: any, index: any) => {
+        {completeTodos.map((todo: string, index: number) => {
           return (
             <div key={todo} className="list-row">
               <li>{todo}</li>
