@@ -21,9 +21,6 @@ export const TodoContainer = () => {
     dispatch(add(newTodo))
   }
 
-  // const removeTodo = (id: number) => {
-  //   dispatch(remove(id))
-  // }
 
   const args = {
     todos,

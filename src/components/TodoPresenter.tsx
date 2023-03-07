@@ -1,14 +1,32 @@
 import React, { useState } from 'react'
 import { Todo } from '../common/todo.type'
 import { TodoContainer } from "./TodoContainer";
+import { add } from "../features/todoSlice"
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../common/rootState.type';
 
 interface TodoPresenterProps {
     todos: Todo[]
 }
 
 export const TodoPresenter: React.FC<TodoPresenterProps> = ({
-    todos,
+
 }) => {
+
+    const todos = useSelector((state: RootState) => state.todos)
+
+    const maxID = todos.length ? todos.slice(-1)[0].id : 0;
+    const dispatch = useDispatch();
+
+    const addTodo = (title: string, content: string) => {
+        const newTodo: Todo = {
+            id: maxID + 1,
+            title: title,
+            content: content,
+            isCompleted: false,
+        }
+        dispatch(add(newTodo))
+    }
 
     const sendTodo = () => {
         addTodo(title, content);
@@ -41,7 +59,6 @@ export const TodoPresenter: React.FC<TodoPresenterProps> = ({
                         <div>{todo.title} : {todo.isCompleted ? "完了" : "未完了"}</div>
                         <div>内容：{todo.content}</div>
                         <button type='button'>{todo.isCompleted ? "戻す" : "完了"}</button>
-                        {/* <button type='button' onClick={() => removeTodo(todo.id)}>削除</button> */}
                     </React.Fragment>
                 )
             })}
