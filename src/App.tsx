@@ -2,19 +2,14 @@
 import { SetStateAction, useState } from 'react';
 import { Form } from "./components/Form"
 import { List } from './components/List';
-import { useDispatch, useSelector } from "react-redux";
-import { inputTodo } from './redux/todoSlice';
-
+import { TodoContainer } from './components/TodoContainer';
 
 function App() {
-
-  const todo = useSelector((state: any) => state.todo.value)
-  const dispatch = useDispatch();
 
   const [todoText, setTodoText] = useState("");
   const [incompleteTodos, setIncompleteTodos] = useState<string[]>([]);
   const [completeTodos, setCompleteTodos] = useState<string[]>([]);
-  const [amount, setAmount] = useState("あああ");
+
 
   const onChangeTodoText = (event: { target: { value: SetStateAction<string>; }; }) => {
     setTodoText(event.target.value)
@@ -51,15 +46,13 @@ function App() {
   return (
     <>
 
-        <div style={{ marginTop: '5%', opacity: "0" }} >
-          <Form onChange={onChangeTodoText} onClickAdd={onClickAdd} todoText={todoText} />
-          <List onClickComplete={onClickComplete} onClickDelete={onClickDelete} onClickBack={onClickBack} incompleteTodos={incompleteTodos} completeTodos={completeTodos} />
-        </div>
+      <div style={{ marginTop: '5%', opacity: "0" }} >
+        <Form onChange={onChangeTodoText} onClickAdd={onClickAdd} todoText={todoText} />
+        <List onClickComplete={onClickComplete} onClickDelete={onClickDelete} onClickBack={onClickBack} incompleteTodos={incompleteTodos} completeTodos={completeTodos} />
+      </div>
 
+      <TodoContainer />
 
-        <input onChange={(e) => setAmount(e.target.value)} value={amount} />
-        <h1>todo: {todo}</h1>
-        <button onClick={() => dispatch(inputTodo((amount)))}>追加</button>
 
     </>
   );
