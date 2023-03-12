@@ -8,7 +8,7 @@ interface Props  {
   completeTodos: string[];
 }
 
-export const List = (props: Props) => {
+export const List: React.FunctionComponent<Props> = (props: Props) => {
   const { onClickComplete, onClickDelete, onClickBack, incompleteTodos, completeTodos } = props
   return (
 
@@ -21,8 +21,8 @@ export const List = (props: Props) => {
               <div key={todo}>
                 <li>{todo}</li>
                 <br />
-                <Button variant='outlined' onClick={() => onClickComplete(index)} style={{ marginRight: '3%', marginBottom: '3px' }}>完了</Button>
-                <Button variant='outlined' onClick={() => onClickDelete(index)} color="error" style={{ marginRight: '3%' }}>削除</Button>
+                <Button variant='outlined' onClick={() => { onClickComplete(index); }} style={{ marginRight: '3%', marginBottom: '3px' }}>完了</Button>
+                <Button variant='outlined' onClick={() => { onClickDelete(index); }} color="error" style={{ marginRight: '3%' }}>削除</Button>
               </div>
             )
           })
@@ -35,7 +35,7 @@ export const List = (props: Props) => {
             <div key={todo} className="list-row">
               <li>{todo}</li>
               <br />
-              <Button onClick={() => onClickBack(index)} variant="outlined" color="error" style={{ marginRight: '3%' }}>削除</Button>
+              <Button onClick={() => { onClickBack(index); }} variant="outlined" color="error" style={{ marginRight: '3%' }}>削除</Button>
             </div>
           );
         })}

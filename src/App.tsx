@@ -1,61 +1,60 @@
 
-import { SetStateAction, useState } from 'react';
-import { Form } from "./components/Form"
-import { List } from './components/List';
-import { TodoContainer } from './components/TodoContainer';
+import { type SetStateAction, useState } from 'react'
+import { Form } from './components/Form'
+import { List } from './components/List'
 
-function App() {
+const App: React.FunctionComponent = () => {
+  const [todoText, setTodoText] = useState('')
+  const [incompleteTodos, setIncompleteTodos] = useState<string[]>([])
+  const [completeTodos, setCompleteTodos] = useState<string[]>([])
 
-  const [todoText, setTodoText] = useState("");
-  const [incompleteTodos, setIncompleteTodos] = useState<string[]>([]);
-  const [completeTodos, setCompleteTodos] = useState<string[]>([]);
+  const onChangeTodoText = (event: { target: { value: SetStateAction<string> } }):void => {
 
-
-  const onChangeTodoText = (event: { target: { value: SetStateAction<string>; }; }) => {
     setTodoText(event.target.value)
   }
 
-  const onClickAdd = () => {
-    if (todoText === "") return;
-    const newTodos = [...incompleteTodos, todoText];
-    setIncompleteTodos(newTodos);
-    setTodoText("");
+  const onClickAdd = ():void => {
+    if (todoText === '') return
+    const newTodos = [...incompleteTodos, todoText]
+    setIncompleteTodos(newTodos)
+    setTodoText('')
     console.log(todoText)
   }
 
-  const onClickDelete = (index: number) => {
+  const onClickDelete = (index: number):void => {
     const newTodos = [...incompleteTodos]
-    newTodos.splice(index, 1);
-    setIncompleteTodos(newTodos);
+    newTodos.splice(index, 1)
+    setIncompleteTodos(newTodos)
   }
 
-  const onClickComplete = (index: number) => {
+  const onClickComplete = (index: number):void => {
     const newIncompleteTodos = [...incompleteTodos]
-    newIncompleteTodos.splice(index, 1);
-    const newCompleteTodos = [...completeTodos, incompleteTodos[index]];
-    setIncompleteTodos(newIncompleteTodos);
-    setCompleteTodos(newCompleteTodos);
+    newIncompleteTodos.splice(index, 1)
+    const newCompleteTodos = [...completeTodos, incompleteTodos[index]]
+    setIncompleteTodos(newIncompleteTodos)
+    setCompleteTodos(newCompleteTodos)
   }
 
-  const onClickBack = (index: number) => {
-    const newTodos = [...completeTodos];
-    newTodos.splice(index, 1);
+  const onClickBack = (index: number):void => {
+    const newTodos = [...completeTodos]
+    newTodos.splice(index, 1)
     setCompleteTodos(newTodos)
   }
 
   return (
     <>
-
-      <div style={{ marginTop: '5%', opacity: "0" }} >
-        <Form onChange={onChangeTodoText} onClickAdd={onClickAdd} todoText={todoText} />
-        <List onClickComplete={onClickComplete} onClickDelete={onClickDelete} onClickBack={onClickBack} incompleteTodos={incompleteTodos} completeTodos={completeTodos} />
+      <div style={{ marginTop: '5%', marginLeft: '5%' }}>
+        <Form onChange = {onChangeTodoText} onClickAdd = {onClickAdd} todoText ={todoText} />
+        <div style={{ marginTop: '5%' }}>
+        <List onClickComplete={onClickComplete} onClickDelete={onClickDelete} onClickBack={onClickBack} incompleteTodos = {incompleteTodos} completeTodos = {completeTodos} />
+        </div>
       </div>
 
       <TodoContainer />
 
 
     </>
-  );
+  )
 }
 
-export default App;
+export default App
