@@ -1,14 +1,13 @@
-import { Button, TextField } from '@mui/material';
+import { Button, TextField } from '@mui/material'
 
-
-interface Props  {
-  onClickAdd: () => void;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  todoText: string;
+interface  Props {
+  onClickAdd: () => void
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+  todoText: string
 }
 
-export const Form = (props: Props) => {
-  const { onClickAdd, onChange, todoText } = props;
+export const Form:React.FunctionComponent<Props> = (props: Props) => {
+  const { onClickAdd, onChange, todoText } = props
 
   return (
     <>
@@ -19,4 +18,3 @@ export const Form = (props: Props) => {
     </>
   )
 }
-
