@@ -9,6 +9,7 @@ const App: React.FunctionComponent = () => {
   const [completeTodos, setCompleteTodos] = useState<string[]>([])
 
   const onChangeTodoText = (event: { target: { value: SetStateAction<string> } }):void => {
+
     setTodoText(event.target.value)
   }
 
@@ -48,6 +49,10 @@ const App: React.FunctionComponent = () => {
         <List onClickComplete={onClickComplete} onClickDelete={onClickDelete} onClickBack={onClickBack} incompleteTodos = {incompleteTodos} completeTodos = {completeTodos} />
         </div>
       </div>
+
+      <TodoContainer />
+
+
     </>
   )
 }
