@@ -49,10 +49,6 @@ const App: React.FunctionComponent = () => {
         <List onClickComplete={onClickComplete} onClickDelete={onClickDelete} onClickBack={onClickBack} incompleteTodos = {incompleteTodos} completeTodos = {completeTodos} />
         </div>
       </div>
-
-      <TodoContainer />
-
-
     </>
   )
 }
