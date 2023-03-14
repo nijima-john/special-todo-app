@@ -8,12 +8,13 @@ const App: React.FunctionComponent = () => {
   const [incompleteTodos, setIncompleteTodos] = useState<string[]>([])
   const [completeTodos, setCompleteTodos] = useState<string[]>([])
 
-  const onChangeTodoText = (event: { target: { value: SetStateAction<string> } }):void => {
+
+  const onChangeTodoText = (event: { target: { value: SetStateAction<string> } }): void => {
 
     setTodoText(event.target.value)
   }
 
-  const onClickAdd = ():void => {
+  const onClickAdd = (): void => {
     if (todoText === '') return
     const newTodos = [...incompleteTodos, todoText]
     setIncompleteTodos(newTodos)
@@ -21,13 +22,13 @@ const App: React.FunctionComponent = () => {
     console.log(todoText)
   }
 
-  const onClickDelete = (index: number):void => {
+  const onClickDelete = (index: number): void => {
     const newTodos = [...incompleteTodos]
     newTodos.splice(index, 1)
     setIncompleteTodos(newTodos)
   }
 
-  const onClickComplete = (index: number):void => {
+  const onClickComplete = (index: number): void => {
     const newIncompleteTodos = [...incompleteTodos]
     newIncompleteTodos.splice(index, 1)
     const newCompleteTodos = [...completeTodos, incompleteTodos[index]]
@@ -35,7 +36,7 @@ const App: React.FunctionComponent = () => {
     setCompleteTodos(newCompleteTodos)
   }
 
-  const onClickBack = (index: number):void => {
+  const onClickBack = (index: number): void => {
     const newTodos = [...completeTodos]
     newTodos.splice(index, 1)
     setCompleteTodos(newTodos)
@@ -44,9 +45,9 @@ const App: React.FunctionComponent = () => {
   return (
     <>
       <div style={{ marginTop: '5%', marginLeft: '5%' }}>
-        <Form onChange = {onChangeTodoText} onClickAdd = {onClickAdd} todoText ={todoText} />
+        <Form onChange={onChangeTodoText} onClickAdd={onClickAdd} todoText={todoText} />
         <div style={{ marginTop: '5%' }}>
-        <List onClickComplete={onClickComplete} onClickDelete={onClickDelete} onClickBack={onClickBack} incompleteTodos = {incompleteTodos} completeTodos = {completeTodos} />
+          <List onClickComplete={onClickComplete} onClickDelete={onClickDelete} onClickBack={onClickBack} incompleteTodos={incompleteTodos} completeTodos={completeTodos} />
         </div>
       </div>
     </>

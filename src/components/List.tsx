@@ -1,6 +1,6 @@
 import { Button } from '@mui/material'
 
-interface Props  {
+interface Props {
   onClickComplete: (index: number) => void;
   onClickDelete: (index: number) => void;
   onClickBack: (index: number) => void;
@@ -11,7 +11,6 @@ interface Props  {
 export const List: React.FunctionComponent<Props> = (props: Props) => {
   const { onClickComplete, onClickDelete, onClickBack, incompleteTodos, completeTodos } = props
   return (
-
     <>
       <h3>・未完了のtodo</h3>
       <ul>
