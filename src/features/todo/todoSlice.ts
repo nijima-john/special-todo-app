@@ -37,6 +37,6 @@ export const todoSlice = createSlice({
   },
 })
 
-export const {add, remove} = todoSlice.actions
+export const { add, remove } = todoSlice.actions
 
-export default todoSlice.reducer
+export const todoReducer = todoSlice.reducer// sliceをexportしようとしたが、エラーが出たので、一旦名前付きexportに変更
