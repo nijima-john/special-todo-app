@@ -21,8 +21,8 @@ const state = {
   ],
 }
 
-export const todoSlice = createSlice({
-  name: 'todoSlice',
+export const todosSlice = createSlice({
+  name: 'todosSlice',
   initialState: state,
   reducers: {
     add: (state, action: PayloadAction<Todo>) => {
@@ -34,6 +34,6 @@ export const todoSlice = createSlice({
   },
 })
 
-export const { add, remove } = todoSlice.actions
+export const { add, remove } = todosSlice.actions
 
-export const todoReducer = todoSlice.reducer // sliceをexportしようとしたが、エラーが出たので、一旦名前付きexportに変更
+export const todosReducer = todosSlice.reducer // sliceをexportしようとしたが、エラーが出たので、一旦名前付きexportに変更
