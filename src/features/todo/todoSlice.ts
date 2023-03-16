@@ -1,8 +1,7 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 
-interface Todo {
-  id: number
-  title: string
+export interface Todo {
+  id: string
   content: string
   isCompleted: boolean
 }
@@ -10,14 +9,12 @@ interface Todo {
 const state = {
   todos: [
     {
-      id: 1,
-      title: 'テスト1',
+      id: 'fc3e9096-1970-b847-e5af-428810dacd6a',
       content: 'テスト1の内容',
       isCompleted: false,
     },
     {
-      id: 2,
-      title: 'テスト2',
+      id: '98705c6a-feee-9754-c953-94bd5d129390',
       content: 'テスト2の内容',
       isCompleted: false,
     },
@@ -31,7 +28,7 @@ export const todoSlice = createSlice({
     add: (state, action: PayloadAction<Todo>) => {
       state.todos.push(action.payload)
     },
-    remove: (state, action: PayloadAction<number>) => {
+    remove: (state, action: PayloadAction<string>) => {
       state.todos = state.todos.filter((todo) => todo.id !== action.payload)
     },
   },
@@ -39,4 +36,4 @@ export const todoSlice = createSlice({
 
 export const { add, remove } = todoSlice.actions
 
-export const todoReducer = todoSlice.reducer// sliceをexportしようとしたが、エラーが出たので、一旦名前付きexportに変更
+export const todoReducer = todoSlice.reducer // sliceをexportしようとしたが、エラーが出たので、一旦名前付きexportに変更

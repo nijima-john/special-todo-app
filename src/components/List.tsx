@@ -1,4 +1,12 @@
-import { Button } from '@mui/material'
+import { useDispatch, useSelector } from 'react-redux';
+import uuid from 'react-uuid';
+import { type RootState } from '../app/store';
+import React, { useState } from 'react'
+import { add } from '../features/todo/todoSlice';
+import { type Todo } from "../features/todo/todoSlice"
+import { Button, TextField } from '@mui/material';
+
+
 
 interface Props {
   onClickComplete: (index: number) => void;
@@ -8,37 +16,40 @@ interface Props {
   completeTodos: string[];
 }
 
-export const List: React.FunctionComponent<Props> = (props: Props) => {
-  const { onClickComplete, onClickDelete, onClickBack, incompleteTodos, completeTodos } = props
+export const List: React.FunctionComponent<Props> = () => {
+
+  const todos = useSelector((state: RootState) => state.todos.todos)
+  const ID = uuid();
+  const dispatch = useDispatch();
+
+  const addTodo = (content: string): void => {
+    const newTodo: Todo = {
+      id: ID,
+      content,
+      isCompleted: false,
+    }
+    if (content === "") return;
+    dispatch(add(newTodo))
+    setContent("");
+  }
+  const [content, setContent] = useState("");
+
   return (
     <>
-      <h3>・未完了のtodo</h3>
-      <ul>
-        {
-          incompleteTodos.map((todo: string, index: number) => {
-            return (
-              <div key={todo}>
-                <li>{todo}</li>
-                <br />
-                <Button variant='outlined' onClick={() => { onClickComplete(index); }} style={{ marginRight: '3%', marginBottom: '3px' }}>完了</Button>
-                <Button variant='outlined' onClick={() => { onClickDelete(index); }} color="error" style={{ marginRight: '3%' }}>削除</Button>
-              </div>
-            )
-          })
-        }
-      </ul>
-      <h3>・完了のtodo</h3>
-      <ul>
-        {completeTodos.map((todo: string, index: number) => {
-          return (
-            <div key={todo} className="list-row">
-              <li>{todo}</li>
-              <br />
-              <Button onClick={() => { onClickBack(index); }} variant="outlined" color="error" style={{ marginRight: '3%' }}>削除</Button>
-            </div>
-          );
-        })}
-      </ul>
+      <form>
+        <TextField label="todoを入力してください" value={content} onChange={e => { setContent(e.target.value); }} ></TextField>
+        <Button variant="contained" onClick={() => { addTodo(content) }} style={{ marginLeft: '25px', marginTop: '5px' }}>送信</Button>
+      </form>
+      <h1>Todolist</h1>
+      {todos.map((todo: Todo) => {
+        return (
+          <div key={todo.id}>
+            <div>内容: {todo.content}</div>
+            <div>{todo.isCompleted}</div>
+
+          </div>
+        )
+      })}
     </>
   )
 }

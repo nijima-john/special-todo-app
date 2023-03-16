@@ -11,7 +11,7 @@ export const Form:React.FunctionComponent<Props> = (props: Props) => {
 
   return (
     <>
-      <div>
+      <div style={{opacity: "0"}}>
         <TextField value={todoText} onChange={onChange} id="outlined-basic" label="todoを入力してください" variant="outlined" />
         <Button onClick={onClickAdd} style={{ marginLeft: '25px', marginTop: '5px' }} >登録</Button>
       </div>
