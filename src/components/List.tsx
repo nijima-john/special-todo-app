@@ -44,6 +44,7 @@ export const List: React.FunctionComponent<Props> = () => {
       {todos.map((todo: Todo) => {
         return (
           <div key={todo.id}>
+            <h3>{todo.isCompleted? "完了" : "未完了"}</h3>
             <div>内容: {todo.content}</div>
             <div>{todo.isCompleted}</div>
 

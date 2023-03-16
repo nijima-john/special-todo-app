@@ -16,7 +16,7 @@ const state = {
     {
       id: '98705c6a-feee-9754-c953-94bd5d129390',
       content: 'テスト2の内容',
-      isCompleted: false,
+      isCompleted: true,
     },
   ],
 }
