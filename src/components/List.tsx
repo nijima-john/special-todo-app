@@ -1,4 +1,6 @@
-import { Button } from '@mui/material'
+import { useSelector } from 'react-redux';
+import { type RootState } from '../app/store';
+import { type Todo } from "../features/todo/todoSlice"
 
 interface Props {
   onClickComplete: (index: number) => void;
@@ -8,37 +10,23 @@ interface Props {
   completeTodos: string[];
 }
 
-export const List: React.FunctionComponent<Props> = (props: Props) => {
-  const { onClickComplete, onClickDelete, onClickBack, incompleteTodos, completeTodos } = props
+export const List: React.FunctionComponent<Props> = () => {
+
+  const todos = useSelector((state: RootState) => state.todos.todos)
+
   return (
     <>
-      <h3>・未完了のtodo</h3>
-      <ul>
-        {
-          incompleteTodos.map((todo: string, index: number) => {
-            return (
-              <div key={todo}>
-                <li>{todo}</li>
-                <br />
-                <Button variant='outlined' onClick={() => { onClickComplete(index); }} style={{ marginRight: '3%', marginBottom: '3px' }}>完了</Button>
-                <Button variant='outlined' onClick={() => { onClickDelete(index); }} color="error" style={{ marginRight: '3%' }}>削除</Button>
-              </div>
-            )
-          })
-        }
-      </ul>
-      <h3>・完了のtodo</h3>
-      <ul>
-        {completeTodos.map((todo: string, index: number) => {
-          return (
-            <div key={todo} className="list-row">
-              <li>{todo}</li>
-              <br />
-              <Button onClick={() => { onClickBack(index); }} variant="outlined" color="error" style={{ marginRight: '3%' }}>削除</Button>
-            </div>
-          );
-        })}
-      </ul>
+      <h1>Todolist</h1>
+      {todos.map((todo: Todo) => {
+        return (
+          <div key={todo.id}>
+            <h3>{todo.isCompleted ? "完了" : "未完了"}</h3>
+            <div>内容: {todo.content}</div>
+            <div>{todo.isCompleted}</div>
+
+          </div>
+        )
+      })}
     </>
   )
 }
