@@ -35,5 +35,3 @@ export const todosSlice = createSlice({
 })
 
 export const { add, remove } = todosSlice.actions
-
-export const todosReducer = todosSlice.reducer // sliceをexportしようとしたが、エラーが出たので、一旦名前付きexportに変更

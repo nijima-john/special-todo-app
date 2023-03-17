@@ -2,15 +2,7 @@ import { useSelector } from 'react-redux';
 import { type RootState } from '../app/store';
 import { type Todo } from "../features/todo/todoSlice"
 
-interface Props {
-  onClickComplete: (index: number) => void;
-  onClickDelete: (index: number) => void;
-  onClickBack: (index: number) => void;
-  incompleteTodos: string[];
-  completeTodos: string[];
-}
-
-export const List: React.FunctionComponent<Props> = () => {
+export const List: React.FunctionComponent = () => {
 
   const todos = useSelector((state: RootState) => state.todos.todos)
 
