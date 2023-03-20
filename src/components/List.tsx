@@ -16,7 +16,7 @@ export const List: React.FunctionComponent = () => {
     content: "",
     isCompleted: false,
   });
-  const removeTodos = (id: string): void => {
+  const removeTodo = (id: string): void => {
     useAppDispatch(remove(id))
   }
   const editButton = (id: string, content: string): void => {
@@ -65,7 +65,7 @@ export const List: React.FunctionComponent = () => {
                   <div key={id}>
                     <h3>{isCompleted ? "完了" : "未完了"}</h3>
                     <div>内容: {content}</div>
-                    <Button variant="contained" style={{ marginTop: "10px", marginRight: "10px" }} onClick={() => { removeTodos(id); }}>削除</Button>
+                    <Button variant="contained" style={{ marginTop: "10px", marginRight: "10px" }} onClick={() => { removeTodo(id); }}>削除</Button>
                     <Button variant="contained" style={{ marginTop: "10px" }} onClick={() => { editButton(id, content) }}>編集</Button>
                   </div>
                 )
