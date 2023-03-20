@@ -1,14 +1,15 @@
 import { Button } from '@mui/material';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { type RootState } from '../app/store';
+import { type store, type RootState } from '../app/store';
 import { edit, remove } from "../features/todo/todoSlice"
+
+type AppDispatch = typeof store.dispatch
 
 export const List: React.FunctionComponent = () => {
 
-
+  const useAppDispatch: (remove: any) => AppDispatch = useDispatch()
   const todos = useSelector((state: RootState) => state.todos.todos)
-  const dispatch = useDispatch();
   const [isEdit, setEdit] = useState(false);
   const [state, setState] = useState({
     id: "",
@@ -16,7 +17,7 @@ export const List: React.FunctionComponent = () => {
     isCompleted: false,
   });
   const removeTodos = (id: string): void => {
-    dispatch(remove(id))
+    useAppDispatch(remove(id))
   }
   const editButton = (id: string, content: string): void => {
     setEdit(true)
@@ -39,7 +40,7 @@ export const List: React.FunctionComponent = () => {
     if (content === '') {
       return;
     }
-    dispatch((edit({
+    useAppDispatch((edit({
       content, id, isCompleted: false
     })));
     setEdit(false);
