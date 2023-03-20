@@ -1,10 +1,11 @@
 import { Button } from '@mui/material';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { type RootState } from '../app/store';
-import { remove, edit } from "../features/todo/todoSlice"
-import { useState } from "react";
+import { edit, remove } from "../features/todo/todoSlice"
 
 export const List: React.FunctionComponent = () => {
+
 
   const todos = useSelector((state: RootState) => state.todos.todos)
   const dispatch = useDispatch();
@@ -63,10 +64,8 @@ export const List: React.FunctionComponent = () => {
                   <div key={id}>
                     <h3>{isCompleted ? "完了" : "未完了"}</h3>
                     <div>内容: {content}</div>
-                    {state.content}
                     <Button variant="contained" style={{ marginTop: "10px", marginRight: "10px" }} onClick={() => { removeTodos(id); }}>削除</Button>
                     <Button variant="contained" style={{ marginTop: "10px" }} onClick={() => { editButton(id, content) }}>編集</Button>
-                    <div>{isCompleted}</div>
                   </div>
                 )
               })
