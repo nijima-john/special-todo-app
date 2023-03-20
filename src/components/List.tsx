@@ -22,7 +22,6 @@ export const List: React.FunctionComponent = () => {
     setState({
       ...state, id, content
     })
-    console.log(state)
   }
 
   const handleChange = (e: { target: { name: string; value: string; }; }): void => {
@@ -30,7 +29,6 @@ export const List: React.FunctionComponent = () => {
       ...state,
       [e.target.name]: e.target.value,
     })
-    console.log(state)
   }
 
 
@@ -45,7 +43,6 @@ export const List: React.FunctionComponent = () => {
     })));
     setEdit(false);
   }
-  console.log(id);
 
   return (
     <>
