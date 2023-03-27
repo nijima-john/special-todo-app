@@ -1,17 +1,17 @@
 import { Button } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
-import { type store, type RootState } from '../app/store';
+import {  useSelector } from 'react-redux';
+import { useAppDispatch, type RootState } from '../app/store';
 import { remove, type Todo } from "../features/todo/todoSlice"
 
-type AppDispatch = typeof store.dispatch
+
 
 export const List: React.FunctionComponent = () => {
 
 
-  const useAppDispatch: (remove: any) => AppDispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const todos = useSelector((state: RootState) => state.todos.todos)
   const removeTodo = (id: string): void => {
-    useAppDispatch(remove(id))
+    dispatch(remove(id))
   }
 
   return (
