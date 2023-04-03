@@ -57,7 +57,9 @@ export const List: React.FunctionComponent = () => {
             <div>
               {todos.map(({ id, content, isCompleted }) => {
                 return (
-                  <ListItem id={id} isCompleted={isCompleted} content={content} removeTodo={removeTodo} handleEditButtonPushed={handleEditButtonPushed} />
+                  <div key={id}>
+                  <ListItem listKey={id} isCompleted={isCompleted} content={content} removeTodo={removeTodo} handleEditButtonPushed={handleEditButtonPushed} />
+                  </div>
                 );
               })}
             </div>
