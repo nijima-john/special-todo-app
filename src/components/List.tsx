@@ -1,8 +1,10 @@
-import { Button } from '@mui/material';
+
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch, type RootState } from '../app/store';
 import { editContent, remove } from "../features/todo/todoSlice"
+import { ListItemEdit } from './ListItemEdit';
+import { ListItem } from './ListItem';
 
 export const List: React.FunctionComponent = () => {
 
@@ -48,23 +50,13 @@ export const List: React.FunctionComponent = () => {
       <h1>Todolist</h1>
       {
         isEditing ?
-          <div>
-            <h2>編集してください</h2>
-            <input type="text" value={content} name="content"
-              onChange={handleChange} />
-            <Button style={{ marginLeft: "10px" }} variant="contained" onClick={() => { editTodo(); }}>更新する</Button>
-          </div>
+          <ListItemEdit content={content} handleChange={handleChange} editTodo={editTodo} />
           :
           <div>
             {
               todos.map(({ id, content, isCompleted }) => {
                 return (
-                  <div key={id}>
-                    <h3>{isCompleted ? "完了" : "未完了"}</h3>
-                    <div>内容: {content}</div>
-                    <Button variant="contained" style={{ marginTop: "10px", marginRight: "10px" }} onClick={() => { removeTodo(id); }}>削除</Button>
-                    <Button variant="contained" style={{ marginTop: "10px" }} onClick={() => { handleEditButtonPushed(id, content) }}>編集</Button>
-                  </div>
+                  <ListItem id={id} isCompleted={isCompleted} content={content} removeTodo={removeTodo} handleEditButtonPushed={handleEditButtonPushed} />
                 )
               })
             }

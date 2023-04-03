@@ -36,7 +36,7 @@ export const todosSlice = createSlice({
     remove: (state, action: PayloadAction<string>) => {
       state.todos = state.todos.filter((todo) => todo.id !== action.payload)
     },
-    editContent: (state, action: PayloadAction<EditActionPayload>) => {
+    editContent: (state, action: PayloadAction<any>) => {
       const newTodo = action.payload
       state.todos = state.todos.map((todo) => (todo.id === newTodo.id ? newTodo : todo))
     },
