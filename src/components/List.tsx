@@ -18,15 +18,18 @@ export const List: React.FunctionComponent = () => {
       <h1>Todolist</h1>
       {todos.map((todo: Todo) => {
         return (
-          (!hideCompleted || todo.isCompleted) && (
+          (!hideCompleted || !todo.isCompleted) && (
             <div key={todo.id}>
               <div>
                 <input type="checkbox" onClick={() => {
                   dispatch(completeTask(todo))
                 }}
-                  checked={todo.isCompleted} />
+                  defaultChecked={todo.isCompleted} />
                   <span>内容：{todo.content}</span>
-                  <Button onClick={() => {removeTodo(todo.id)}}>削除</Button>
+                  <Button onClick={() => {removeTodo(todo.id)}} 
+                  variant="contained" color="error" size="small"
+                  style={{margin: "10px" }}
+                  >削除</Button>
               </div>
             </div>
           ))

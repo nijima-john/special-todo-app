@@ -36,7 +36,9 @@ export const Form = (): any => {
         </TextField>
         <Button variant="contained" onClick={() => { addTodo(content) }} style={{ marginLeft: '25px', marginTop: '5px' }}>送信</Button>
       </form>
-      <Button onClick={handleButton}>Hide Completed</Button>
+      <Button variant="contained" onClick={handleButton}
+        style={{ marginTop: "15px" }}
+      >完了リストを非表示にする</Button>
     </>
   )
 }
