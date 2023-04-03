@@ -1,4 +1,4 @@
-import { Button } from '@mui/material';
+import { Button, TextField } from '@mui/material';
 import React from 'react'
 
 interface Props {
@@ -12,9 +12,9 @@ export const ListItemEdit: React.FunctionComponent<Props> = (props) => {
     return (
         <div>
             <h2>編集してください</h2>
-            <input type="text" value={content} name="content"
+            <TextField type="text" value={content} name="content"
                 onChange={handleChange} />
-            <Button style={{ marginLeft: "10px" }} variant="contained" onClick={() => { editTodo(); }}>更新する</Button>
+            <Button style={{ marginLeft: '25px', marginTop: '5px' }} variant="contained" onClick={() => { editTodo(); }}>更新する</Button>
         </div>
     )
 }

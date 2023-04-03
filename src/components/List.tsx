@@ -47,20 +47,21 @@ export const List: React.FunctionComponent = () => {
 
   return (
     <>
-      <h1>Todolist</h1>
+
       {
         isEditing ?
           <ListItemEdit content={content} handleChange={handleChange} editTodo={editTodo} />
           :
-          <div>
-            {
-              todos.map(({ id, content, isCompleted }) => {
+          <>
+            <h1>Todolist</h1>
+            <div>
+              {todos.map(({ id, content, isCompleted }) => {
                 return (
                   <ListItem id={id} isCompleted={isCompleted} content={content} removeTodo={removeTodo} handleEditButtonPushed={handleEditButtonPushed} />
-                )
-              })
-            }
-          </div>
+                );
+              })}
+            </div>
+          </>
       }
     </>
   )
