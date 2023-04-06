@@ -40,7 +40,7 @@ export const List: React.FunctionComponent = () => {
       return;
     }
     dispatch(editContent({
-      ...todos, content, id
+      content, id
     }));
     setIsEditing(false);
   }

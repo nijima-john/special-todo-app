@@ -1,4 +1,4 @@
-import { createSlice,  type PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 
 export interface Todo {
   id: string
@@ -10,6 +10,8 @@ export interface EditActionPayload {
   id: string
   content: string
 }
+
+
 
 const state = {
   todos: [
@@ -37,9 +39,8 @@ export const todosSlice = createSlice({
       state.todos = state.todos.filter((todo) => todo.id !== action.payload)
     },
     editContent: (state, action: PayloadAction<EditActionPayload>) => {
-      const originalTodo = state.todos.find(reTodo => reTodo.id === action.payload.id)
-      const newTodo = { ...originalTodo, content: action.payload.content}
-      state.todos = state.todos.map((todo) => (todo.id === action.payload.id ? newTodo : todo))
+      const { id, content } = action.payload
+      state.todos = state.todos.map((todo) => (todo.id === id ? { ...todo, content } : todo))
     },
   },
 })
