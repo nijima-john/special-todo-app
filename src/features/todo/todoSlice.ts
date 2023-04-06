@@ -6,6 +6,13 @@ export interface Todo {
   isCompleted: boolean
 }
 
+export interface EditActionPayload {
+  id: string
+  content: string
+}
+
+
+
 const state = {
   todos: [
     {
@@ -31,7 +38,11 @@ export const todosSlice = createSlice({
     remove: (state, action: PayloadAction<string>) => {
       state.todos = state.todos.filter((todo) => todo.id !== action.payload)
     },
+    editContent: (state, action: PayloadAction<EditActionPayload>) => {
+      const { id, content } = action.payload
+      state.todos = state.todos.map((todo) => (todo.id === id ? { ...todo, content } : todo))
+    },
   },
 })
 
-export const { add, remove } = todosSlice.actions
+export const { add, remove, editContent } = todosSlice.actions
