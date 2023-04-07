@@ -6,6 +6,11 @@ export interface Todo {
   isCompleted: boolean
 }
 
+export interface EditActionPayload {
+  id: string
+  content: string
+}
+
 const state = {
   todos: [
     {
@@ -32,7 +37,7 @@ export const todosSlice = createSlice({
     remove: (state, action: PayloadAction<string>) => {
       state.todos = state.todos.filter((todo) => todo.id !== action.payload)
     },
-    completeTask: (state, action: PayloadAction<Todo>) => {
+    completeTask: (state, action: PayloadAction<any>) => {
       const todo = state.todos.find((t) => t.id === action.payload.id)
       if (todo != null) {
         todo.isCompleted = !todo.isCompleted
@@ -41,7 +46,11 @@ export const todosSlice = createSlice({
     toddleHideCompleted: (state) => {
       state.hideCompleted = !state.hideCompleted
     },
+    editContent: (state, action: PayloadAction<EditActionPayload>) => {
+      const { id, content } = action.payload
+      state.todos = state.todos.map((todo) => (todo.id === id ? { ...todo, content } : todo))
+    },
   },
 })
 
-export const { add, remove, toddleHideCompleted,completeTask } = todosSlice.actions
+export const { add, remove, toddleHideCompleted, completeTask, editContent } = todosSlice.actions
