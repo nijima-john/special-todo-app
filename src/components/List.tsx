@@ -1,7 +1,7 @@
 
 import { useSelector } from 'react-redux';
 import { useAppDispatch, type RootState } from '../app/store';
-import { completeTask, remove, editContent } from "../features/todo/todoSlice"
+import { remove, editContent, type Todo } from "../features/todo/todoSlice"
 import { useState } from 'react';
 import { ListItemEdit } from './ListItemEdit';
 import { ListItem } from './ListItem';
@@ -56,11 +56,19 @@ export const List: React.FunctionComponent = () => {
           <>
             <h1>Todolist</h1>
             <div>
-              {todos.map(({ id, content, isCompleted }) => {
+              {todos.map((todo: Todo) => {
                 return (
-                  (!hideCompleted || !isCompleted) && (
-                    <>
-                  <ListItem listKey={id} isCompleted={isCompleted} content={content} removeTodo={removeTodo} handleEditButtonPushed={handleEditButtonPushed} /></>
+                  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+                  (!hideCompleted || !todo.isCompleted) && (
+                    <div key={todo.id}>
+                      <ListItem
+                        todo={todo}
+                        listKey={todo.id}
+                        isCompleted={todo.isCompleted}
+                        content={todo.content}
+                        removeTodo={removeTodo}
+                        handleEditButtonPushed={handleEditButtonPushed} />
+                    </div>
 
                   ));
               })}
