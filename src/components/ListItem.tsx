@@ -1,6 +1,6 @@
 import { Button } from '@mui/material';
 import React from 'react'
-import { type Todo, completeTask } from '../features/todo/todoSlice';
+import { type Todo, completeTask, remove } from '../features/todo/todoSlice';
 import { useAppDispatch } from '../app/store';
 
 interface Props {
@@ -8,7 +8,6 @@ interface Props {
     listKey: string
     isCompleted: boolean
     content: string
-    removeTodo: (id: string) => void
     handleEditButtonPushed: (id: string, content: string) => void
 }
 
@@ -16,7 +15,10 @@ interface Props {
 
 export const ListItem: React.FunctionComponent<Props> = (props) => {
     const dispatch = useAppDispatch();
-    const { todo, listKey, isCompleted, content, removeTodo, handleEditButtonPushed } = props;
+    const removeTodo = (id: string): void => {
+        dispatch(remove(id))
+    }
+    const { todo, listKey, isCompleted, content, handleEditButtonPushed } = props;
     return (
         <div key={listKey}>
             <h3>{isCompleted ? "完了" : "未完了"}</h3>

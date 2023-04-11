@@ -11,6 +11,11 @@ export interface EditActionPayload {
   content: string
 }
 
+export interface CompleteTaskActionPayload {
+  id: string
+  isCompleted: boolean
+}
+
 const state = {
   todos: [
     {
@@ -37,11 +42,9 @@ export const todosSlice = createSlice({
     remove: (state, action: PayloadAction<string>) => {
       state.todos = state.todos.filter((todo) => todo.id !== action.payload)
     },
-    completeTask: (state, action: PayloadAction<any>) => {
-      const todo = state.todos.find((t) => t.id === action.payload.id)
-      if (todo != null) {
-        todo.isCompleted = !todo.isCompleted
-      }
+    completeTask: (state, action: PayloadAction<CompleteTaskActionPayload>) => {
+      const { id } = action.payload
+      state.todos.map((todo) => (todo.id === id ? (todo.isCompleted = !todo.isCompleted) : todo))
     },
     toddleHideCompleted: (state) => {
       state.hideCompleted = !state.hideCompleted
