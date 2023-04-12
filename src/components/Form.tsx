@@ -3,8 +3,6 @@ import { type Todo, add, toddleHideCompleted } from '../features/todo/todoSlice'
 import { v4 as uuidv4 } from 'uuid';
 import { Button, TextField } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-
-
 import { useState } from 'react';
 import { type RootState } from '../app/store';
 
@@ -38,13 +36,10 @@ export const Form = (): any => {
         </TextField>
         <Button variant="contained" onClick={() => { addTodo(content) }} style={{ marginLeft: '25px', marginTop: '5px' }}>送信</Button>
       </form>
-      {!hideCompleted ? (<Button variant="contained" onClick={handleButton}
+      <Button variant="contained" onClick={handleButton}
         style={{ marginTop: "15px" }}
-      >完了リストを非表示にする</Button>)
-        :
-        (<Button variant="contained" onClick={handleButton}
-          style={{ marginTop: "15px" }}
-        >完了リストを表示する</Button>)}
+      >{hideCompleted ? "完了リストを表示する" : "完了リストを非表示にする"}
+      </Button>
     </>
   )
 }
