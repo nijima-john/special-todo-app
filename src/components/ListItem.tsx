@@ -1,6 +1,6 @@
 import { Button } from '@mui/material';
 import React from 'react'
-import { type Todo, completeTask, remove } from '../features/todo/todoSlice';
+import { type Todo, remove, toggleCompleteTask } from '../features/todo/todoSlice';
 import { useAppDispatch } from '../app/store';
 
 interface Props {
@@ -23,7 +23,7 @@ export const ListItem: React.FunctionComponent<Props> = (props) => {
                 <input
                     type="checkbox"
                     onClick={() => {
-                        dispatch(completeTask(todo));
+                        dispatch(toggleCompleteTask(todo));
                     }}
                     defaultChecked={isCompleted} />
             </div>

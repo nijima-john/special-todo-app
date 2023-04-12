@@ -42,9 +42,9 @@ export const todosSlice = createSlice({
     remove: (state, action: PayloadAction<string>) => {
       state.todos = state.todos.filter((todo) => todo.id !== action.payload)
     },
-    completeTask: (state, action: PayloadAction<CompleteTaskActionPayload>) => {
+    toggleCompleteTask: (state, action: PayloadAction<CompleteTaskActionPayload>) => {
       const { id } = action.payload
-      state.todos.map((todo) => (todo.id === id ? (todo.isCompleted = !todo.isCompleted) : todo))
+      state.todos = state.todos.map((todo) => (todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo))
     },
     toddleHideCompleted: (state) => {
       state.hideCompleted = !state.hideCompleted
@@ -56,4 +56,4 @@ export const todosSlice = createSlice({
   },
 })
 
-export const { add, remove, toddleHideCompleted, completeTask, editContent } = todosSlice.actions
+export const { add, remove, toddleHideCompleted, toggleCompleteTask, editContent } = todosSlice.actions
