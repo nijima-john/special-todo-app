@@ -1,8 +1,8 @@
 
-import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch, type RootState } from '../app/store';
-import { editContent, remove } from "../features/todo/todoSlice"
+import { editContent } from "../features/todo/todoSlice"
+import { useState } from 'react';
 import { ListItemEdit } from './ListItemEdit';
 import { ListItem } from './ListItem';
 
@@ -16,9 +16,7 @@ export const List: React.FunctionComponent = () => {
     content: "",
     isCompleted: false,
   });
-  const removeTodo = (id: string): void => {
-    dispatch(remove(id))
-  }
+
   const handleEditButtonPushed = (id: string, content: string): void => {
     setIsEditing(true)
     setEditingState({
@@ -45,9 +43,10 @@ export const List: React.FunctionComponent = () => {
     setIsEditing(false);
   }
 
+  const hideCompleted = useSelector((state: RootState) => state.todos.hideCompleted)
+
   return (
     <>
-
       {
         isEditing ?
           <ListItemEdit content={content} handleChange={handleChange} editTodo={editTodo} />
@@ -55,12 +54,16 @@ export const List: React.FunctionComponent = () => {
           <>
             <h1>Todolist</h1>
             <div>
-              {todos.map(({ id, content, isCompleted }) => {
+              {todos.map((todo) => {
+                const { id, isCompleted } = todo
                 return (
-                  <div key={id}>
-                  <ListItem listKey={id} isCompleted={isCompleted} content={content} removeTodo={removeTodo} handleEditButtonPushed={handleEditButtonPushed} />
-                  </div>
-                );
+                  (!hideCompleted || !isCompleted) && (
+                    <div key={id}>
+                      <ListItem
+                        todo={todo}
+                        handleEditButtonPushed={handleEditButtonPushed} />
+                    </div>
+                  ));
               })}
             </div>
           </>
