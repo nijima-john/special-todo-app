@@ -1,5 +1,5 @@
 
-import { type Todo, add, toddleHideCompleted } from '../features/todo/todoSlice';
+import { type Todo, add, toggleHideCompleted } from '../features/todo/todoSlice';
 import { v4 as uuidv4 } from 'uuid';
 import { Button, TextField } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
@@ -24,7 +24,7 @@ export const Form = (): any => {
   const [content, setContent] = useState("");
 
   const handleButton = (): void => {
-    dispatch(toddleHideCompleted())
+    dispatch(toggleHideCompleted())
   }
 
   return (
