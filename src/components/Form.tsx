@@ -1,10 +1,11 @@
 
 import { type Todo, add, toggleHideCompleted } from '../features/todo/todoSlice';
 import { v4 as uuidv4 } from 'uuid';
-import { Button, TextField } from '@mui/material';
+import { Button, Checkbox, FormControlLabel, FormGroup, TextField } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { type RootState } from '../app/store';
+
 
 export const Form = (): any => {
 
@@ -29,17 +30,20 @@ export const Form = (): any => {
 
   return (
     <>
-      <form>
-        <TextField label="todoを入力してください"
+      <form style={{marginBottom: "10%"}}>
+        <TextField label="やりたいこと入力してね"
           value={content}
           onChange={e => { setContent(e.target.value); }} >
         </TextField>
-        <Button variant="contained" onClick={() => { addTodo(content) }} style={{ marginLeft: '25px', marginTop: '5px' }}>送信</Button>
+        <br></br>
+        <Button variant="contained"
+          onClick={() => { addTodo(content) }} style={{ width: "50%", marginLeft: "20%", marginTop: "5%" }} >
+          追加
+        </Button>
       </form>
-      <Button variant="contained" onClick={handleButton}
-        style={{ marginTop: "15px" }}
-      >{hideCompleted ? "完了リストを表示する" : "完了リストを非表示にする"}
-      </Button>
+      <FormGroup>
+        <FormControlLabel control={<Checkbox defaultChecked onClick={handleButton} />} label={hideCompleted ? "元に戻す" : "完了したものを削除"}  />
+      </FormGroup>
     </>
   )
 }

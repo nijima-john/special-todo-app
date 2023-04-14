@@ -47,12 +47,12 @@ export const List: React.FunctionComponent = () => {
 
   return (
     <>
+    <h3 style={{marginTop: "15%"}}>やりたいことリスト</h3>
       {
         isEditing ?
           <ListItemEdit content={content} handleChange={handleChange} editTodo={editTodo} />
           :
           <>
-            <h1>Todolist</h1>
             <div>
               {todos.map((todo) => {
                 const { id, isCompleted } = todo
