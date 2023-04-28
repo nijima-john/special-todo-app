@@ -17,7 +17,7 @@ export const ListItem: React.FunctionComponent<Props> = (props) => {
     const { id, isCompleted, content } = todo;
 
     return (
-        <div key={id} style={{ marginBottom: "10%" }}>
+        <div key={id} style={{ marginBottom: "10%", backgroundColor: "#CCFFCC", borderRadius:"15px",padding: "15px" }}>
             <input
                 type="checkbox"
                 onClick={() => {

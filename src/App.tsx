@@ -7,17 +7,18 @@ const App: React.FunctionComponent = () => {
 
   return (
     <>
-      <Grid container alignItems={"center"} justifyContent={"center"}>
-        <Grid item xs={8}>
-          <div style={{ marginTop: '5%', marginLeft: '5%' }}>
-            <Form />
-            <div style={{ marginTop: '5%' }}>
-              <List />
+      <div style={{height:"max"}}>
+        <Grid container alignItems={"center"} justifyContent={"center"} style={{ backgroundColor: "#FFFFCC" }}>
+          <Grid item xs={8}>
+            <div style={{ marginTop: '3%', marginLeft: '5%', backgroundColor: "#FFFFCC" }}>
+              <Form />
+              <div style={{ marginTop: '3%' }}>
+                <List />
+              </div>
             </div>
-          </div>
+          </Grid>
         </Grid>
-      </Grid>
-
+      </div>
     </>
   )
 }

@@ -47,7 +47,7 @@ export const List: React.FunctionComponent = () => {
 
   return (
     <>
-    <h3 style={{marginTop: "15%"}}>やりたいことリスト</h3>
+    <h3 style={{marginTop: "5%"}}>やりたいことリスト</h3>
       {
         isEditing ?
           <ListItemEdit content={content} handleChange={handleChange} editTodo={editTodo} />

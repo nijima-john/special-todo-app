@@ -15,13 +15,8 @@ const state = {
   todos: [
     {
       id: 'fc3e9096-1970-b847-e5af-428810dacd6a',
-      content: 'テスト1の内容',
+      content: 'サンプル1',
       isCompleted: false,
-    },
-    {
-      id: '98705c6a-feee-9754-c953-94bd5d129390',
-      content: 'テスト2の内容',
-      isCompleted: true,
     },
   ],
   hideCompleted: false,

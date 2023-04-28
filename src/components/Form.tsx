@@ -30,19 +30,22 @@ export const Form = (): any => {
 
   return (
     <>
-      <form style={{marginBottom: "10%"}}>
-        <TextField label="やりたいこと入力してね"
-          value={content}
-          onChange={e => { setContent(e.target.value); }} >
-        </TextField>
-        <br></br>
-        <Button variant="contained"
-          onClick={() => { addTodo(content) }} style={{ width: "50%", marginLeft: "20%", marginTop: "5%" }} >
-          追加
-        </Button>
-      </form>
+
+        <div style={{textAlign: "center"}}>
+ 
+          <TextField label="やりたいこと入力してね"
+            value={content}
+            onChange={e => { setContent(e.target.value); }} >
+          </TextField>
+          <br></br>
+          <Button variant="contained"
+            onClick={() => { addTodo(content) }} style={{ marginTop: "3%" }} >
+            追加
+          </Button>
+        </div>
+      
       <FormGroup>
-        <FormControlLabel control={<Checkbox defaultChecked onClick={handleButton} />} label={hideCompleted ? "元に戻す" : "完了したものを削除"}  />
+        <FormControlLabel control={<Checkbox defaultChecked onClick={handleButton} />} label={hideCompleted ? "元に戻す" : "完了したものを削除"} />
       </FormGroup>
     </>
   )
